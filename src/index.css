@@ -11,3 +11,200 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Mrs+Saint+Delafield&family=Noto+Serif+SC:wght@200&family=Press+Start+2P&family=WindSong:wght@500&family=ZCOOL+XiaoWei&display=swap');
+
+.card-container{
+  background-color: #e5ddd0;
+  height: calc( 100vh - 64px);
+  padding: 32px;
+}
+
+.card{
+  background-color: white;
+  background-image:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0),rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5)),
+          url("Assets/b1.jpg");
+  background-repeat: repeat;
+  background-size: 50% 50%;
+  height: calc( 90vh - 64px);
+  width: calc( 100vw - 64px);
+  border-radius: 4em;
+  align-items: center; /* 垂直居中 */
+  box-shadow:
+          4px 0 24px rgba(0, 0, 0, 0.1), /* 左侧阴影 */
+          -4px 0 24px rgba(0, 0, 0, 0.1); /* 右侧阴影 */
+}
+
+.card-container-def{
+  background-color: #e5ddd0;
+  padding: 32px;
+  min-height: calc( 100vh - 64px);
+}
+.card-def{
+  background-color: #ffffff;
+  width: calc( 100vw - 64px);
+  border-radius: 4em;
+  align-items: center; /* 垂直居中 */
+  box-shadow:
+          4px 0 24px rgba(0, 0, 0, 0.1), /* 左侧阴影 */
+          -4px 0 24px rgba(0, 0, 0, 0.1); /* 右侧阴影 */
+}
+
+.card-header {
+  position: inherit; /* 设置为粘性定位 */
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: calc( 100vw - 128px);
+  padding-top: 10px;
+}
+.card-title{
+  font-family: 'WindSong', cursive;
+  font-size: 48px;
+  color: #000000;
+}
+.card-ID{
+  font-size: 12px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+
+.center{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 64px;
+}
+
+.img-container{
+  border-radius: 1em;
+  background-color: rgba(243, 243, 243, 0.4);
+  height: 50vh;
+  width: 20vw;
+  overflow: hidden;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.text-title{
+  font-size: 16px;
+  font-family: 'Press Start 2P', cursive;
+}
+.text-name{
+  margin: 10px;
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+.text{
+  margin: 10px;
+  align-items: flex-start;
+  display: flex;
+}
+
+
+.arco-tooltip-content{
+  background-color: #efefef !important;
+  color: var(--color-neutral-10) !important;
+  border-radius:var(--border-radius-large) !important;
+  min-width: 30vw !important;
+}
+.arco-trigger-arrow.arco-tooltip-arrow {
+  background-color:var(--color-neutral-2) !important;
+}
+
+
+/* --------- */
+/* Button */
+/* --------- */
+.arco-btn-primary.arco-btn-disabled {
+  font-weight:800 !important;
+  background-color: #add0ff !important;
+}
+.arco-btn-primary:not(.arco-btn-disabled){
+  font-weight:800 !important;
+  background-color: #8fbbfd !important;
+}
+.arco-btn-primary:not(.arco-btn-disabled):hover{
+  font-weight:800 !important;
+  background-color: #73a9ff !important;
+}
+.arco-btn-primary:not(.arco-btn-disabled):active{
+  font-weight:800 !important;
+  background-color: #146eff !important;
+}
+
+.generate-results{
+  margin: 0 24px 64px 24px;
+}
+
+
+.arco-btn-text.arco-btn-status-warning:not(.arco-btn-disabled) {
+  color: cornflowerblue !important;
+}
+.arco-btn-text.arco-btn-status-warning:not(.arco-btn-disabled):not(.arco-btn-loading):hover {
+   border-color: transparent;
+   color: rgb(var(--warning-6));
+  background-color: rgba(255, 255, 255, 0.4) !important;
+ }
+
+
+.img-stack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img{
+  border-radius: 1em;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  height: 45vh;
+  width: 20vw;
+  overflow: hidden;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+/* 设置卡牌堆叠效果 */
+.img-stack .img:nth-child(1) {
+  z-index: 1;
+  transform: translateY(25%) translateX(40%) rotate(-35deg) scale(0.8); /* 第1张卡牌位置 */
+  opacity: 0.7; /* 第二张卡牌透明度 */
+}
+
+.img-stack .img:nth-child(2) {
+  z-index: 2;
+  transform: translateY(5%) translateX(10%) rotate(-15deg) scale(0.9); /* 第2张卡牌位置 */
+  opacity: 0.8; /* 第三张卡牌透明度 */
+}
+.img-stack .img:nth-child(3) {
+  z-index: 5;
+  transform: translateY(0) scale(1); /* 第3张卡牌位置 */
+  opacity: 0.9;
+}
+
+.img-stack .img:nth-child(4) {
+  z-index: 4;
+  transform: translateY(5%) translateX(-10%) rotate(15deg) scale(0.9); /* 第4张卡牌位置 */
+  opacity: 0.8; /* 第二张卡牌透明度 */
+}
+
+.img-stack .img:nth-child(5) {
+  z-index: 3;
+  transform: translateY(25%) translateX(-40%) rotate(35deg) scale(0.8); /* 第5张卡牌位置 */
+  opacity: 0.7; /* 第三张卡牌透明度 */
+}
+
+
