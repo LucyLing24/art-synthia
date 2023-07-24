@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/generative-tool-for-charactors/static/css/main.3969e84f.css",
+    "main.js": "/generative-tool-for-charactors/static/js/main.1f25ccfe.js",
+    "static/js/787.ae7142d4.chunk.js": "/generative-tool-for-charactors/static/js/787.ae7142d4.chunk.js",
+    "static/media/b1.jpg": "/generative-tool-for-charactors/static/media/b1.06d47156623a66f337a4.jpg",
+    "static/media/pngwing.com (2).png": "/generative-tool-for-charactors/static/media/pngwing.com (2).ac3d11eb152f214bd565.png",
+    "static/media/pngwing.com (1).png": "/generative-tool-for-charactors/static/media/pngwing.com (1).e0b3ba2e3485a4e3502d.png",
+    "static/media/pngwing.com.png": "/generative-tool-for-charactors/static/media/pngwing.com.c0ee698ae892e9d358ba.png",
+    "static/media/mummy.png": "/generative-tool-for-charactors/static/media/mummy.66eb66515a0b8e5f5c2b.png",
+    "static/media/logo.png": "/generative-tool-for-charactors/static/media/logo.a4cbe3f65908a60db0cd.png",
+    "index.html": "/generative-tool-for-charactors/index.html",
+    "main.3969e84f.css.map": "/generative-tool-for-charactors/static/css/main.3969e84f.css.map",
+    "main.1f25ccfe.js.map": "/generative-tool-for-charactors/static/js/main.1f25ccfe.js.map",
+    "787.ae7142d4.chunk.js.map": "/generative-tool-for-charactors/static/js/787.ae7142d4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3969e84f.css",
+    "static/js/main.1f25ccfe.js"
+  ]
+}
