@@ -1,166 +1,176 @@
 // Details.js
-import React, {useEffect, useState} from 'react';
-import {Button, Switch, Tag, Tooltip, Typography, Grid, Input, Form} from "@arco-design/web-react";
+import React, {useEffect, useRef, useState} from 'react';
+import {Button, Switch, Tag, Tooltip, Typography, Grid, Input, Form, Select, Modal} from "@arco-design/web-react";
 import logo from "../Assets/logo.png";
 import _ from "lodash";
-import {IconPlus} from "@arco-design/web-react/icon";
-import items from "../Consts";
 import {useNavigate, useParams} from "react-router-dom";
-import format from "../Consts/form"
-
-const Row = Grid.Row;
-const Col = Grid.Col;
-const TextArea = Input.TextArea;
-const FormItem = Form.Item;
+import html2canvas from "html2canvas";
+import handleDisplayJson from "../Services/handleDisplayJson";
 
 function Details() {
-    const [gen,setGen]=useState(false);
-    const options = items;
-    const [item,setItem]=useState()
-
+    const options = JSON.parse(localStorage.getItem("data"));
+    const [item,setItem]=useState(_.find(options,["id",'000']))
+    const [share,setShare]=useState(false);
+    console.log(options,111)
     const navigate = useNavigate();
 
     const {id}=useParams()
     useEffect(()=>{
         if(id){
-            const newItem=_.find(options,["id",id]);
-            setItem(newItem);
+            setItem(_.find(options,["id",id]));
         }
     },[])
-    console.log(item)
 
-    return (
+    // download
+    const containerRef = useRef(null);
+    const handleDownload = () => {
+        const container = containerRef.current;
+
+        // 使用 html2canvas 将容器绘制为图片
+        html2canvas(container).then((canvas) => {
+            // 将 canvas 转换为图片的数据 URL
+            const imageURI = canvas.toDataURL("image/png");
+
+            // 创建下载链接
+            const downloadLink = document.createElement("a");
+            downloadLink.href = imageURI;
+            downloadLink.download = "CharacterProfile.png";
+            downloadLink.click();
+        });
+    };
+
+return (
         <div className="card-container-def">
-            <div className="card-def">
+            <div className="card-def" ref={containerRef}>
                 <div style={{marginLeft: 32, marginRight: 32, marginBottom: 32, overflow: "hidden"}}>
 
                     {/*header*/}
                     <div className="card-header">
                         <div className="card-title">
-                            Arcana Forge
+                            Art Synthia
                             Character Generator
                         </div>
                         <div className="card-ID">
-                            ID: <Input style={{width: 300, borderRadius: "2em"}} allowClear
-                                       placeholder='Please Enter ID' value={item?.id}/>
+                            ID: {item?.id}
                         </div>
                     </div>
 
                     {/*title*/}
                     <div className="center">
-                        <span className="text-title">CHARACTER RELATED SETTINGS</span>
+                        <span className="text-title-big">{item?.name}'s Profile</span>
                     </div>
 
-                    {/*form & button*/}
-                    <div>
-                        <Form labelCol={{span: 4}} style={{width: "100%"}} autoComplete='off'>
-                            {
-                                _.map(format, (value, key) => {
-                                    return (
-                                        <div className="text">
-                                            <FormItem label={<span>{key.toUpperCase()}:</span>} >
-                                                <TextArea style={{borderRadius: "2em"}} autoSize allowClear
-                                                          placeholder='Please Enter'  />
-                                            </FormItem>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </Form>
 
-                        <div className="center" style={{flexDirection: "row", gap: "5vw", marginTop: 0}}>
-                            <Button status='warning' shape="round"
-                                    style={{fontWeight: 800, width: "20vw"}}>Clear</Button>
-                            <Button shape="round" type="primary" style={{width: "20vw"}} onClick={()=>{setGen(true)}}>Generate</Button>
+                    {/*pic*/}
+                    <div className="center" style={{gap: 48}}>
+                        <div className="img-container">
+                            <img src={item?.picture ?? logo} width="100%" />
+                        </div>
+                    </div>
+
+
+                    {/*other info*/}
+                    <div style={{marginLeft: 72, marginRight: 72, marginBottom: 108}}>
+                        <pre style={{whiteSpace: 'pre-line'}}>
+
+                            {/*details*/}
+
+                            {
+                                item?.settings ?
+                                    <div>
+                                        <div className="text-name" style={{margin: 32}}>
+                                            <span className="text-title">SETTINGS</span>
+                                        </div>
+                                        {
+                                            _.map(item?.settings, (value, key) => {
+                                                return (
+                                                    handleDisplayJson(value, key, 0)
+                                                )
+                                            })
+                                        }
+                                    </div>:null
+                            }
+
+                            {
+                                item?.details ?
+                                    <div>
+                                        <div className="text-name" style={{margin: 32}}>
+                                            <span className="text-title">DETAILS</span>
+                                        </div>
+                                        {
+                                            _.map(item?.details, (value, key) => {
+                                                return (
+                                                    handleDisplayJson(value, key, 0)
+                                                )
+                                            })
+                                        }
+                                    </div> : null
+                            }
+
+
+                            {
+                                item?.summary?.length>0 ?
+                                    <div>
+                                        <div className="text-name" style={{margin: 32}}>
+                                            <span className="text-title">SUMMARY</span>
+                                        </div>
+                                        <div className="text">
+                                            {item?.summary}
+                                        </div>
+                                    </div> : null
+                            }
+                        </pre>
+
+                        {/*keywords*/}
+
+                        <div className="text-name" style={{margin: 32}}>
+                            <span className="text-title">KEYWORDS</span>
+                        </div>
+                        <div className="text" style={{marginBottom: 48,flexWrap:"wrap"}}>
+                                {
+                                    _.map(item?.keywords, (value) => {
+                                        return (
+                                            <Tag style={{margin: '0 16px 16px 0 ', fontWeight: 800}}
+                                                 color="lime">
+                                                {value}
+                                            </Tag>
+                                        )
+                                    })
+                                }
                         </div>
                     </div>
 
                 </div>
             </div>
 
-
-            {
-                gen?
-
-            <div className="card-def">
-                <div style={{marginLeft: 32, marginRight: 32, overflow: "hidden"}}>
-                    <div className="center" style={{gap: 24, margin: 72}}>
-                        <span className="text-title">AI GENERATED RESULTS</span>
-                    </div>
-                    <div className="center" style={{gap: 48, margin: 72}}>
-                        <div className="img-stack">
-                            <div className="img">
-                                <img src={logo} width="100%"/>
-                            </div>
-                            <div className="img">
-                                <img src={logo} width="100%"/>
-                            </div>
-                            <div className="img">
-                                <img src={logo} width="100%"/>
-                            </div>
-                            <div className="img">
-                                <img src={logo} width="100%"/>
-                            </div>
-                            <div className="img">
-                                <img src={logo} width="100%"/>
-                            </div>
-                        </div>
-
-                        <div className="text-name">
-                            <span className="text-title">NAME:</span>
-                            <Typography.Text
-                                editable
-                                copyable>
-                                {item.name}
-                            </Typography.Text>
-                        </div>
-                    </div>
-
-                    <div className="generate-results">
-                        {
-                            _.map(item?.details, (value, key) => {
-                                return (
-                                    <div className="text">
-                                        <span className="text-title">{key.toUpperCase()}:</span>
-                                        <Typography.Paragraph
-                                            editable
-                                            copyable>
-                                            {value}
-                                        </Typography.Paragraph>
-                                    </div>
-                                )
-                            })
-                        }
-                        <div className="text">
-                            <span className="text-title">KEYWORDS:</span>
-                            {
-                                _.map(item?.keywords, (value) => {
-                                    return (
-                                        <Tag closable={true} style={{margin: '0 16px 16px 0 ', fontWeight: 800}}
-                                             color="lime">
-                                            {value}
-                                        </Tag>
-                                    )
-                                })
-                            }
-                            <Tag icon={<IconPlus/>}
-                                 style={{margin: '0 16px 16px 0 ', fontWeight: 800, cursor: 'pointer',}}>
-                                Add Tag
-                            </Tag>
-                        </div>
-                    </div>
+            <div className="center" style={{flexDirection: "row", gap: "5vw", height: "calc(10vh + 32px)", margin: 0}}>
+                <Button status='warning' shape="round" style={{fontWeight: 800, width: "20vw"}}
+                        onClick={() => {navigate(`/home/${id}`)}}>
+                    Back
+                </Button>
+                <Button shape="round" type="primary" style={{width: "20vw"}} onClick={()=>{navigate(`/edit/${id}`)}}>Edit</Button>
+                <Button color="lime" shape="round" type="default" style={{width: "20vw",fontWeight:800}} onClick={()=>{setShare(true)}}>Share & Download</Button>
+            </div>
+            <Modal
+                simple
+                title={<span className="text-title">Share Character</span>}
+                visible={share}
+                okText='ok'
+                cancelText='Cancel'
+                cancelButtonProps={{shape:"round",style:{fontWeight:800}}}
+                okButtonProps={{shape:"round"}}
+                onOk={() => setShare(false)}
+                onCancel={() => setShare(false)}
+            >
+                <div className="center" style={{alignItems:'center',gap:12}} >
+                    <span className="text-title" style={{fontSize:12}}>LINKAGE</span>
+                    <Typography.Text copyable>
+                        {window.location.href}
+                    </Typography.Text>
+                    <span className="text-title" style={{fontSize:12}}>PICTURE</span>
+                    <Button status='warning' shape="round"  style={{fontWeight:800}} onClick={handleDownload}>Download Role Profile</Button>
                 </div>
-            </div>:null}
-
-            {
-                gen?
-                <div className="center" style={{flexDirection: "row", gap: "5vw", height: "calc(10vh + 32px)", margin: 0}}>
-                    <Button status='warning' shape="round" style={{fontWeight: 800, width: "20vw"}}>Cancel</Button>
-                    <Button shape="round" type="primary" style={{width: "20vw"}} onClick={() => {navigate(`/home/${id}`)
-                    }}>Save & Back</Button>
-                </div>:null
-            }
-
+            </Modal>
         </div>
     )
 }

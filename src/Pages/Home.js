@@ -1,16 +1,15 @@
 // Home.js
 import React, {useEffect, useRef, useState} from 'react';
 import {Button, Card, Grid, Modal, Popover, Select, Tag, Typography} from "@arco-design/web-react";
-import defaultPic from "./../Assets/mummy.png"
 import logo from "./../Assets/logo.png"
 import pic from "./../Assets/pngwing.com.png"
 import pic1 from "./../Assets/pngwing.com (1).png"
 import pic2 from "./../Assets/pngwing.com (2).png"
 import _ from "lodash";
 import html2canvas from "html2canvas";
-import {IconPlus} from "@arco-design/web-react/icon";
-import items from "../Consts/index"
 import {useNavigate, useParams} from "react-router-dom";
+import axios from "axios";
+import handleDisplayJson from "../Services/handleDisplayJson";
 const Row = Grid.Row;
 const Col = Grid.Col;
 
@@ -18,21 +17,23 @@ const Col = Grid.Col;
 function Home() {
     const [select,setSelect]=useState(false);
     const [share,setShare]=useState(false);
-    const options = items;
-    const [item,setItem]=useState(_.find(options,["id",'2023-000']))
+    const options = JSON.parse(localStorage.getItem("data"));
+    const [item,setItem]=useState({})
 
     const navigate = useNavigate();
-    useEffect(()=>{
-        navigate(`/home/2023-000`)
-    },[])
-
     const {id}=useParams()
+
     useEffect(()=>{
         if(id){
-            setItem(_.find(options,["id",id]));
+            setItem(_.find(options,["id",id]) ?? _.find(options,["id","000"]));
+        }
+        else {
+            setItem(_.find(options,["id","000"]));
+            navigate(`/home/000`)
         }
     },[id])
 
+    // download
     const containerRef = useRef(null);
     const handleDownload = () => {
         const container = containerRef.current;
@@ -53,7 +54,7 @@ function Home() {
     return (
         <div className="card-container">
             <div className="card" ref={containerRef}>
-                <div style={{marginLeft: 32, marginRight: 32,overflow:"hidden"}}>
+                <div style={{marginLeft: 32, marginRight: 32,overflow:"hidden",maxHeight:"calc( 90vh - 64px)"}}>
                     <img
                         src={pic1}
                         style={{zIndex: 0,position: "absolute",top:40,right:40,width:300,opacity: 0.7,filter:"contrast(10%)"}}/>
@@ -65,39 +66,38 @@ function Home() {
                         style={{zIndex: 0,position: "absolute",width:"60%",opacity: 0.5,filter:"contrast(30%)"}}/>
                     <div className="card-header">
                         <div className="card-title">
-                            Arcana Forge
+                            Art Synthia
                             Character Generator
                         </div>
                         <div className="card-ID">
                             ID: {item.id}
                         </div>
                     </div>
-                    <Row>
+                    <pre style={{whiteSpace: 'pre-line'}}>
+                    <Row >
                         <Col span={8}>
                             <div className="center">
                                 <div className="img-container">
-                                    <img src={logo} width="100%" />
+                                    <img src={item?.picture ?? logo} width="100%" />
                                 </div>
                                 <div className="text-name">
-                                    <span className="text-title">NAME:</span>{item.name}
+                                    <span className="text-title">NAME: {item.name}</span>
                                 </div>
                             </div>
                         </Col>
                         <Col span={16} >
-                            <div style={{marginTop:64}}>
-                                {
-                                    _.map(item?.details, (value, key) => {
-                                        return(
-                                            <div className="text">
-                                                <span className="text-title">{key.toUpperCase()}:</span>
-                                                <Typography.Paragraph ellipsis={{ rows: 6, showTooltip: true, wrapper: 'span' }}>
-                                                    {value}
-                                                </Typography.Paragraph>
-                                            </div>
-                                        )
-                                    })
-                                }
-                                <div className="text">
+                            <div style={{marginTop: 64}}>
+                                <div style={{overflow: "scroll", maxHeight: "calc( 90vh - 360px)"}}>
+
+                                    {
+                                        _.map(item?.details, (value, key) => {
+                                            return (
+                                                handleDisplayJson(value, key, 0)
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <div className="text" style={{flexWrap:"wrap",maxHeight:"68px",overflow:'scroll'}}>
                                     <span className="text-title">KEYWORDS:</span>
                                     {
                                         _.map(item?.keywords, (value) => {
@@ -109,15 +109,16 @@ function Home() {
                                         })
                                     }
                                 </div>
-                                <Button status="warning" shape="round" type="text" style={{width:"100%"}} onClick={()=>{navigate(`/details/${id}`)}}><span className="text-title">view details -> </span></Button>
+                                <Button status="warning" shape="round" type="text"  onClick={()=>{navigate(`/details/${id}`)}}><span className="text-title">view details -> </span></Button>
                             </div>
                         </Col>
                     </Row>
+                    </pre>
                 </div>
             </div>
             <div className="center" style={{flexDirection:"row",gap:"5vw",height:"calc(10vh + 32px)",margin:0}}>
                 <Button status='warning' shape="round"  style={{fontWeight:800}} onClick={()=>{setSelect(true)}}>Select Another Character</Button>
-                <Button shape="round" type="primary" style={{width:"30vw"}} onClick={()=>{navigate(`/details/${id}`)}}>Create A New Character</Button>
+                <Button shape="round" type="primary" style={{width:"30vw"}} onClick={()=>{navigate(`/create`)}}>Create A New Character</Button>
                 <Button color="lime" shape="round" type="default" style={{fontWeight:800}} onClick={()=>{setShare(true)}}>Share</Button>
                 <Modal
                     simple
