@@ -60,10 +60,12 @@ function Login() {
                           onSubmit={async (values) => {
                               localStorage.setItem('api_key', values['openai_api_key']);
                               localStorage.setItem('data', JSON.stringify(items));
-                              if(await handleChatGPT("hi,test connect!", 1)){
-                                  navigate(`/home`)
+                              try{
+                                  if(await handleChatGPT("hi,test connect!", 1)){
+                                      navigate(`/home`)
+                                  }
                               }
-                              else {
+                              catch (e){
                                   window.alert("API key error, please provide a new one!")
                               }
                           }}
