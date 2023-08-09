@@ -7,7 +7,7 @@ import Login from "./Pages/Login";
 
 function App() {
     return (
-        <Router basename="/art-Synthia">
+        <Router>
             <Routes>
                 <Route path="/home/:id" element={<Home />}/>
                 <Route path="/details/:id" element={<Details />}/>

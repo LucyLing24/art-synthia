@@ -156,7 +156,7 @@ return (
                         <span className="text-title-big">AI GENERATED RESULTS</span>
                     </div>
 
-                    <div className="center" style={{gap: 48, margin: 132}}>
+                    <div className="center" style={{gap: 48, margin: 108}}>
                         {
                             picture.length > 0 ? (
                                     <div className="img-stack">

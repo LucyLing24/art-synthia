@@ -9,7 +9,9 @@ function handleDisplayJson(value, key, indent = 0) {
                 <span className="text-title">{key}: </span>
                 {
                     _.map(value, (son_value) => {
-                        return (<Tag  style={{margin: '0 16px 0px 0 ',fontWeight: 800}}>{son_value}</Tag>)})
+                        return (
+                            <Tag  style={{margin: '0 16px 0px 0 ',fontWeight: 800}}>{son_value}</Tag>
+                        )})
                 }
             </div>
         )

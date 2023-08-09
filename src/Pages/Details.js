@@ -62,10 +62,8 @@ return (
 
 
                     {/*pic*/}
-                    <div className="center" style={{gap: 48}}>
-                        <div className="img-container">
-                            <img src={item?.picture ?? logo} width="100%" />
-                        </div>
+                    <div className="center" >
+                            <img src={item?.picture ?? logo} style={{width:300}} />
                     </div>
 
 
@@ -77,10 +75,10 @@ return (
 
                             {
                                 item?.settings ?
-                                    <div>
+                                    <div style={{flexWrap:'wrap'}}>
                                         <div className="text-name" style={{margin: 32}}>
                                             <span className="text-title">SETTINGS</span>
-                                        </div>
+                                        </div >
                                         {
                                             _.map(item?.settings, (value, key) => {
                                                 return (
@@ -93,7 +91,7 @@ return (
 
                             {
                                 item?.details ?
-                                    <div>
+                                    <div style={{flexWrap:'wrap'}}>
                                         <div className="text-name" style={{margin: 32}}>
                                             <span className="text-title">DETAILS</span>
                                         </div>
@@ -110,7 +108,7 @@ return (
 
                             {
                                 item?.summary?.length>0 ?
-                                    <div>
+                                    <div style={{flexWrap:'wrap'}}>
                                         <div className="text-name" style={{margin: 32}}>
                                             <span className="text-title">SUMMARY</span>
                                         </div>

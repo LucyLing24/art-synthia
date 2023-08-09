@@ -77,10 +77,8 @@ function Home() {
                     <Row >
                         <Col span={8}>
                             <div className="center">
-                                <div className="img-container">
-                                    <img src={item?.picture ?? logo} width="100%" />
-                                </div>
-                                <div className="text-name">
+                                <img src={item?.picture ?? logo} width="100%" />
+                                <div className="text-name" style={{marginTop:24}}>
                                     <span className="text-title">NAME: {item.name}</span>
                                 </div>
                             </div>

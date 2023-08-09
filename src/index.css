@@ -187,8 +187,8 @@ code {
   border-radius: 1em;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-  height: 45vh;
-  width: 20vw;
+  height: 15vw;
+  width: 15vw;
   overflow: hidden;
   display: flex;
   align-content: center;
