@@ -2,6 +2,7 @@
   "name": "generative-tool-for-charactors",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lucyling24.github.io/art-Synthia/",
   "dependencies": {
     "@arco-design/web-react": "^2.50.2",
     "@testing-library/jest-dom": "^5.17.0",
