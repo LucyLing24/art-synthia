@@ -10,7 +10,7 @@ const handleChatGPT = async (prompt,temperature) => {
 
     const response = await openai.createChatCompletion(
         {
-            messages: [{role: 'system', content: 'You are a character design assistant.'}, {
+            messages: [{role: 'system', content: 'You are a game character design assistant.'}, {
                 role: 'user',
                 content: prompt
             }],
