@@ -15,6 +15,7 @@ function Details() {
     const navigate = useNavigate();
 
     const {id}=useParams()
+    console.log(id,useParams(),111)
     useEffect(()=>{
         if(id){
             setItem(_.find(options,["id",id]));
@@ -143,10 +144,10 @@ return (
 
             <div className="center" style={{flexDirection: "row", gap: "5vw", height: "calc(10vh + 32px)", margin: 0}}>
                 <Button status='warning' shape="round" style={{fontWeight: 800, width: "20vw"}}
-                        onClick={() => {navigate(`/home/${id}`)}}>
+                        onClick={() => {navigate(`/artsynthia/home/${id}`)}}>
                     Back
                 </Button>
-                <Button shape="round" type="primary" style={{width: "20vw"}} onClick={()=>{navigate(`/edit/${id}`)}}>Edit</Button>
+                {/*<Button shape="round" type="primary" style={{width: "20vw"}} onClick={()=>{navigate(`/edit/${id}`)}}>Edit</Button>*/}
                 <Button color="lime" shape="round" type="default" style={{width: "20vw",fontWeight:800}} onClick={()=>{setShare(true)}}>Share & Download</Button>
             </div>
             <Modal

@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/art-Synthia/static/css/main.b8722020.css",
-    "main.js": "/art-Synthia/static/js/main.1ad35c14.js",
-    "static/js/787.ae7142d4.chunk.js": "/art-Synthia/static/js/787.ae7142d4.chunk.js",
-    "static/media/b1.jpg": "/art-Synthia/static/media/b1.06d47156623a66f337a4.jpg",
-    "static/media/pngwing.com (2).png": "/art-Synthia/static/media/pngwing.com (2).ac3d11eb152f214bd565.png",
-    "static/media/pngwing.com (1).png": "/art-Synthia/static/media/pngwing.com (1).e0b3ba2e3485a4e3502d.png",
-    "static/media/pngwing.com.png": "/art-Synthia/static/media/pngwing.com.c0ee698ae892e9d358ba.png",
-    "static/media/logo.png": "/art-Synthia/static/media/logo.a4cbe3f65908a60db0cd.png",
-    "index.html": "/art-Synthia/index.html",
-    "main.b8722020.css.map": "/art-Synthia/static/css/main.b8722020.css.map",
-    "main.1ad35c14.js.map": "/art-Synthia/static/js/main.1ad35c14.js.map",
-    "787.ae7142d4.chunk.js.map": "/art-Synthia/static/js/787.ae7142d4.chunk.js.map"
+    "main.css": "/artsynthia/static/css/main.217d5590.css",
+    "main.js": "/artsynthia/static/js/main.92acfb92.js",
+    "static/js/787.ae7142d4.chunk.js": "/artsynthia/static/js/787.ae7142d4.chunk.js",
+    "static/media/b1.jpg": "/artsynthia/static/media/b1.06d47156623a66f337a4.jpg",
+    "static/media/mango.png": "/artsynthia/static/media/mango.4a94e3541a3d79ed18da.png",
+    "static/media/pngwing.com (2).png": "/artsynthia/static/media/pngwing.com (2).ac3d11eb152f214bd565.png",
+    "static/media/pngwing.com (1).png": "/artsynthia/static/media/pngwing.com (1).e0b3ba2e3485a4e3502d.png",
+    "static/media/pngwing.com.png": "/artsynthia/static/media/pngwing.com.c0ee698ae892e9d358ba.png",
+    "static/media/logo.png": "/artsynthia/static/media/logo.a4cbe3f65908a60db0cd.png",
+    "index.html": "/artsynthia/index.html",
+    "main.217d5590.css.map": "/artsynthia/static/css/main.217d5590.css.map",
+    "main.92acfb92.js.map": "/artsynthia/static/js/main.92acfb92.js.map",
+    "787.ae7142d4.chunk.js.map": "/artsynthia/static/js/787.ae7142d4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8722020.css",
-    "static/js/main.1ad35c14.js"
+    "static/css/main.217d5590.css",
+    "static/js/main.92acfb92.js"
   ]
 }

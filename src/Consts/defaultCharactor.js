@@ -1,3 +1,4 @@
+import mango from "../Assets/mango.png"
 const items = [
     {
         id: "000",
@@ -21,7 +22,7 @@ const items = [
     {
         id: "001",
         name: "Mango",
-        picture: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-eOZGO1k7OqcyDltJsRnZeqEP/user-ZV96fh1GsPH4TfRTMXYoetWi/img-VCngaXL5xhJ3URtKpzUUZ7Ek.png?st=2023-08-09T03%3A21%3A19Z&se=2023-08-09T05%3A21%3A19Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-08-08T18%3A03%3A36Z&ske=2023-08-09T18%3A03%3A36Z&sks=b&skv=2021-08-06&sig=tf94S8Z1qOhF4qJVEWNmcn5a9kce8fwegmIJP7WoT3c%3D",
+        picture: mango,
         settings: {
             "name": "Mango",
             "character_details": "Mango is a dog",
@@ -34,7 +35,7 @@ const items = [
                 "label": "Ethereal Odyssey"
             },
             "background_story": "Mango wants eat mangoes",
-            "id": "0224"
+            "id": "001"
         },
         details: {
             "name": "Mango",

@@ -30,7 +30,7 @@ function Create() {
     const handleGenerate = async (userInput) => {
         setGenerated(true);
         try {
-            const raw_summary = await handleChatGPT("Please analyze the following character information and return a paragraph of plain text content"+JSON.stringify(userInput),1);
+            const raw_summary = await handleChatGPT("Please analyze the following character information, Expand imagination and enrich details. return a paragraph of plain text content,"+JSON.stringify(userInput),1);
             setSummary(raw_summary);
 
             const raw_details = await handleChatGPT("Please extract character information from the following text and return it in JSON format"+raw_summary,0);
@@ -40,7 +40,7 @@ function Create() {
             setKeyword(raw_keyword?.split(","));
 
 
-            const raw_picture = await handleDALLE2("a game character,"+raw_keyword+raw_details)
+            const raw_picture = await handleDALLE2("a game character in style"+form.getFieldsValue("render_style")?.render_style+raw_keyword+raw_details)
             setPicture(raw_picture.data.data);
 
         } catch (error) {
@@ -295,7 +295,7 @@ return (
                                     }
                                 ]
                                 localStorage.setItem('data',JSON.stringify(new_data))
-                                navigate(`/home/${form.getFieldsValue("id")?.id ?? "000"}`)
+                                navigate(`/artsynthia/home/${form.getFieldsValue("id")?.id ?? "000"}`)
                             }}
                     >Save & Back</Button>
                 </div> : null

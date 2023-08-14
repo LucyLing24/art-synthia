@@ -62,7 +62,7 @@ function Login() {
                               localStorage.setItem('data', JSON.stringify(items));
                               try{
                                   if(await handleChatGPT("hi,test connect!", 1)){
-                                      navigate(`/home`)
+                                      navigate(`/artsynthia/home/000`)
                                   }
                               }
                               catch (e){

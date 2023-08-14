@@ -29,7 +29,7 @@ function Home() {
         }
         else {
             setItem(_.find(options,["id","000"]));
-            navigate(`/home/000`)
+            navigate(`/artsynthia/home/000`)
         }
     },[id])
 
@@ -107,7 +107,7 @@ function Home() {
                                         })
                                     }
                                 </div>
-                                <Button status="warning" shape="round" type="text"  onClick={()=>{navigate(`/details/${id}`)}}><span className="text-title">view details -> </span></Button>
+                                <Button status="warning" shape="round" type="text"  onClick={()=>{navigate(`/artsynthia/profile/${id}`)}}><span className="text-title">view profile -> </span></Button>
                             </div>
                         </Col>
                     </Row>
@@ -116,7 +116,7 @@ function Home() {
             </div>
             <div className="center" style={{flexDirection:"row",gap:"5vw",height:"calc(10vh + 32px)",margin:0}}>
                 <Button status='warning' shape="round"  style={{fontWeight:800}} onClick={()=>{setSelect(true)}}>Select Another Character</Button>
-                <Button shape="round" type="primary" style={{width:"30vw"}} onClick={()=>{navigate(`/create`)}}>Create A New Character</Button>
+                <Button shape="round" type="primary" style={{width:"30vw"}} onClick={()=>{navigate(`/artsynthia/create`)}}>Create A New Character</Button>
                 <Button color="lime" shape="round" type="default" style={{fontWeight:800}} onClick={()=>{setShare(true)}}>Share</Button>
                 <Modal
                     simple
@@ -138,7 +138,7 @@ function Home() {
                         options={_.map(options,(option)=>{
                             return {value:option?.id,label:option?.name+" ("+option?.id+")",item:option}
                         })}
-                        onChange={(item)=>{setItem(_.find(options,["id",item?.value]));navigate(`/home/${item?.value}`)}}
+                        onChange={(item)=>{setItem(_.find(options,["id",item?.value]));navigate(`/artsynthia/home/${item?.value}`)}}
                     >
                     </Select>
                 </Modal>

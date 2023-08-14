@@ -9,11 +9,11 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/home/:id" element={<Home />}/>
-                <Route path="/details/:id" element={<Details />}/>
-                <Route path="/create" element={<Create />}/>
-                <Route exact path="/" element={<Login />}/>
-                <Route path="*" element={<Home />}/>
+                <Route path="/artsynthia/home/:id" element={<Home />}/>
+                <Route path="/artsynthia/profile/:id" element={<Details />}/>
+                <Route path="/artsynthia/create" element={<Create />}/>
+                <Route exact path="/artsynthia" element={<Login />}/>
+                <Route path="*" element={<Login />}/>
             </Routes>
         </Router>
     );
