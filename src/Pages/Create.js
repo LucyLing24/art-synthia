@@ -36,7 +36,7 @@ function Create() {
             const raw_details = await handleChatGPT("Please extract character's 'name, age, dressing style, weapoon, background stroy from the following text, please help me to give more rich details about each of them and return it in JSON format"+raw_summary,0);
             setDetails(JSON.parse(raw_details?.split(",")));
 
-            const raw_keyword = await handleChatGPT("Please identify 7 critical keywords about the character in these content, including the gender of the character, the artstyle, the dressing style and the main characteristic of the character， especially noun and adj, I want to search for reference images based on the keywords, you only need to answer 7 keywords, separated by commas:"+raw_summary,0);
+            const raw_keyword = await handleChatGPT("Please identify 10 critical keywords about the character in these content, including the gender of the character, the artstyle, the dressing style and the main characteristic of the character， especially noun and adj, I want to search for reference images based on the keywords, you only need to answer 10 keywords, separated by commas:"+raw_summary,0);
             setKeyword(raw_keyword?.split(","));
 
 

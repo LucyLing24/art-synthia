@@ -11,7 +11,7 @@ const handleDALLE2 = async (prompt) => {
     const res = await openai.createImage({
         prompt: prompt,
         n: 5,
-        size: "500x500",
+        size: "512x512",
     });
 
     return res;
