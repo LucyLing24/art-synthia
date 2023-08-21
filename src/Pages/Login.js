@@ -48,7 +48,7 @@ function Login() {
                             Character Generator
                         </div>
                         <div className="card-ID">
-                            ID: 000
+                            ID: 0
                         </div>
                     </div>
 
@@ -60,9 +60,10 @@ function Login() {
                           onSubmit={async (values) => {
                               localStorage.setItem('api_key', values['openai_api_key']);
                               localStorage.setItem('data', JSON.stringify(items));
+                              localStorage.setItem('id', "1");
                               try{
                                   if(await handleChatGPT("hi,test connect!", 1)){
-                                      navigate(`/artsynthia/home/000`)
+                                      navigate(`/artsynthia/home/0`)
                                   }
                               }
                               catch (e){

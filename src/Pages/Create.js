@@ -16,6 +16,7 @@ const FormItem = Form.Item;
 
 function Create() {
     const [generated,setGenerated]=useState(false);
+    const [edit,setEdit ]= useState(false);
 
     const [form] = Form.useForm();
     const [add_tag] = Form.useForm();
@@ -24,7 +25,7 @@ function Create() {
     const [details, setDetails] = useState([]);
     const [picture, setPicture] = useState([]);
     const [keyword, setKeyword] = useState([]);
-
+    const id=(Number(JSON.parse(localStorage.getItem('id')))+1).toString() ?? "0";
     const navigate = useNavigate();
 
     const handleGenerate = async (userInput) => {
@@ -40,7 +41,7 @@ function Create() {
             setKeyword(raw_keyword?.split(","));
 
 
-            const raw_picture = await handleDALLE2("a fully-body portrait of game character in style"+form.getFieldsValue("render_style")?.render_style+raw_keyword)
+            const raw_picture = await handleDALLE2("a single person portrait and bust of game character in style"+form.getFieldsValue("render_style")?.render_style+raw_keyword)
             setPicture(raw_picture.data.data);
 
         } catch (error) {
@@ -56,8 +57,6 @@ function Create() {
         setPicture(updatedList);
     };
 
-
-
 return (
         <div className="card-container-def">
             <div className="card-def">
@@ -70,14 +69,7 @@ return (
                             Character Generator
                         </div>
                         <div className="card-ID">
-                            <Form form={form} labelCol={{span: 5}} wrapperCol={{span: 18}} style={{width: "100%"}}
-                                  onSubmit={(values)=>{handleGenerate(values)}}
-                            >
-                                <FormItem field="id" label={<span className="text-title">ID</span>}>
-                                    <Input style={{borderRadius: "2em"}} allowClear
-                                           placeholder='Please Enter ID' />
-                                </FormItem>
-                            </Form>
+                            ID: {id}
                         </div>
                     </div>
 
@@ -89,8 +81,7 @@ return (
                     {/*form & button*/}
                     <div>
                         <Form form={form} labelCol={{span: 5}} wrapperCol={{span: 18}} style={{width: "100%"}}
-                              onSubmit={(values)=>{handleGenerate(values)}}
-                        >
+                              onSubmit={(values)=>{handleGenerate(values)}}>
                             <pre style={{whiteSpace: 'pre-line'}}>
                                 <FormItem field="name" label={<span className="text-title">CHARACTER_NAME</span>}>
                                     <Input style={{borderRadius: "2em"}} allowClear
@@ -136,13 +127,8 @@ return (
                                             style={{fontWeight: 800, width: "20vw"}} >Clear</Button>
                                     <Button shape="round" type="primary" style={{width: "20vw"}} htmlType="submit" >Generate</Button>
                                 </div>
-
                         </Form>
-
-
-
                     </div>
-
                 </div>
             </div>
 
@@ -198,47 +184,15 @@ return (
                     </div>
 
                     <div className="generate-results">
-
-
-
-
-                        {/*details*/}
-                        <div className="text-name" style={{margin: 32}}>
-                            <span className="text-title">DETAILS</span>
-                        </div>
-                        <Typography.Paragraph
-                            style={{width:"100%",display:'block'}}>
-                            <pre style={{ whiteSpace: 'pre-line' }}>
-                                {
-                                    _.map(details, (value, key) => {
-                                        return (
-                                            handleDisplayJson(value, key, 0)
-                                        )
-                                    })
-                                }
-                            </pre>
-                        </Typography.Paragraph>
-
-                        {/*summary*/}
-                        <div className="text-name" style={{margin:32}}>
-                            <span className="text-title">SUMMARY</span>
-                        </div>
-                        <div className="text">
-                            <Typography.Paragraph style={{width:"100%",display:'block'}}>
-                                <pre style={{ whiteSpace: 'pre-line' }}>{summary}</pre>
-                            </Typography.Paragraph>
-                        </div>
-
-
                         {/*keywords*/}
                         <div className="text-name"  style={{margin:32}}>
                             <span className="text-title">KEYWORDS</span>
                         </div>
-                        <div className="text" style={{marginBottom: 96, flexWrap: "wrap"}}>
+                        <div className="text" style={{ flexWrap: "wrap"}}>
                             {
                                 _.map(keyword, (value) => {
                                     return (
-                                        <Tag closable={true} style={{margin: '0 16px 16px 0 ', fontWeight: 800}}
+                                        <Tag closable={edit} style={{margin: '0 16px 16px 0 ', fontWeight: 800}}
                                              color="lime"
                                         >
                                             {value}
@@ -246,7 +200,7 @@ return (
                                     )
                                 })
                             }
-
+                            {edit ?
                             <Tag icon={<IconPlus/>}
                                  style={{margin: '0 16px 16px 0 ', fontWeight: 800, cursor: 'pointer',}}
                                  onClick={()=> Modal.success({
@@ -269,10 +223,46 @@ return (
                                  }
                             >
                                 Add Tag
-                            </Tag>
+                            </Tag>:null}
                         </div>
 
 
+                        {/*details*/}
+                        <div className="text-name" style={{marginTop: 64}}>
+                            <span className="text-title">DETAILS</span>
+                        </div>
+                        <div
+                            style={{width:"100%",display:'block'}}>
+                            <pre style={{ whiteSpace: 'pre-line'}}>
+                                {
+                                    edit ?
+                                        <Typography.Text >
+                                            {JSON.stringify(details)}
+                                        </Typography.Text> :
+                                        _.map(details, (value, key) => {
+                                            return (
+                                                handleDisplayJson(value, key, 0)
+                                            )
+                                        })
+                                }
+                            </pre>
+                        </div>
+
+                        {/*summary*/}
+                        <div className="text-name" style={{marginTop:64}}>
+                            <span className="text-title">SUMMARY</span>
+                        </div>
+                        <div className="text" style={{marginBottom:96}}>
+                            {edit ?
+                                <Typography.Paragraph style={{width: "100%", display: 'block'}} editable={{
+                                    onChange: setSummary,
+                                }}>
+                                    <pre style={{whiteSpace: 'pre-line'}}>{summary}</pre>
+                                </Typography.Paragraph> :
+                                <Typography.Paragraph style={{width: "100%", display: 'block'}}>
+                                    <pre style={{whiteSpace: 'pre-line'}}>{summary}</pre>
+                                </Typography.Paragraph>}
+                        </div>
                     </div>
                 </div>
             </div>:null}
@@ -281,13 +271,35 @@ return (
                 generated?
                 <div className="center" style={{flexDirection: "row", gap: "5vw", height: "calc(10vh + 32px)", margin: 0}}>
                     <Button status='warning' shape="round" style={{fontWeight: 800, width: "20vw"}} onClick={()=>handleGenerate(form.getFields())}>Regenerate</Button>
+                    <Button  shape="round" style={{fontWeight: 800, width: "20vw"}} onClick={() => {
+                        if (edit) {
+                            setEdit(false)
+                            localStorage.setItem('id', (Number(JSON.parse(localStorage.getItem('id')))+1).toString() );
+                            const new_data=[...JSON.parse(localStorage.getItem('data')),
+                                {
+                                    id:id ?? "0",
+                                    name:form.getFieldsValue("name")?.name ?? "unidentified",
+                                    picture:picture ?? [logo,logo,logo,logo,logo],
+                                    settings:form.getFields() ?? [],
+                                    details:details ?? [],
+                                    keywords:keyword ?? [],
+                                    summary:summary ??"",
+                                }
+                            ]
+                            localStorage.setItem('data',JSON.stringify(new_data))
+                        }
+                        else {
+                            setEdit(true)
+                        }
+                    }}>{edit ? "Save" : "Edit"}</Button>
                     <Button shape="round" type="primary" style={{width: "20vw"}}
                             onClick={() => {
+                                localStorage.setItem('id', (Number(JSON.parse(localStorage.getItem('id')))+1).toString() );
                                 const new_data=[...JSON.parse(localStorage.getItem('data')),
                                     {
-                                        id:form.getFieldsValue("id")?.id ?? "000",
+                                        id:id ?? "0",
                                         name:form.getFieldsValue("name")?.name ?? "unidentified",
-                                        picture:picture[2]?.url ?? logo,
+                                        picture:picture ?? [logo,logo,logo,logo,logo],
                                         settings:form.getFields() ?? [],
                                         details:details ?? [],
                                         keywords:keyword ?? [],
@@ -295,7 +307,7 @@ return (
                                     }
                                 ]
                                 localStorage.setItem('data',JSON.stringify(new_data))
-                                navigate(`/artsynthia/home/${form.getFieldsValue("id")?.id ?? "000"}`)
+                                navigate(`/artsynthia/home/${id ?? "0"}`)
                             }}
                     >Save & Back</Button>
                 </div> : null

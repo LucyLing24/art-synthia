@@ -9,18 +9,18 @@ import handleDisplayJson from "../Services/handleDisplayJson";
 
 function Details() {
     const options = JSON.parse(localStorage.getItem("data"));
-    const [item,setItem]=useState(_.find(options,["id",'000']))
+    const [item,setItem]=useState(_.find(options,["id","0"]))
     const [share,setShare]=useState(false);
-    console.log(options,111)
+    const [edit,setEdit ]= useState(false);
     const navigate = useNavigate();
 
     const {id}=useParams()
-    console.log(id,useParams(),111)
     useEffect(()=>{
         if(id){
             setItem(_.find(options,["id",id]));
         }
     },[])
+
 
     // download
     const containerRef = useRef(null);
@@ -64,7 +64,44 @@ return (
 
                     {/*pic*/}
                     <div className="center" >
-                            <img src={item?.picture ?? logo} style={{width:300}} />
+                        {
+                            item?.picture?.length > 0 ? (
+                                    <div className="img-stack">
+                                        <div className="img" >
+                                            <img src={item?.picture?.[0]?.url} height="100%"/>
+                                        </div>
+                                        <div className="img" >
+                                            <img src={item?.picture?.[1]?.url} height="100%"/>
+                                        </div>
+                                        <div className="img" >
+                                            <img src={item?.picture?.[2]?.url} height="100%"/>
+                                        </div>
+                                        <div className="img" >
+                                            <img src={item?.picture?.[3]?.url} height="100%"/>
+                                        </div>
+                                        <div className="img">
+                                            <img src={item?.picture?.[4]?.url} height="100%"/>
+                                        </div>
+                                    </div>
+                                ) :
+                                <div className="img-stack">
+                                    <div className="img">
+                                        <img src={logo} height="100%"/>
+                                    </div>
+                                    <div className="img">
+                                        <img src={logo} height="100%"/>
+                                    </div>
+                                    <div className="img">
+                                        <img src={logo} height="100%"/>
+                                    </div>
+                                    <div className="img">
+                                        <img src={logo} height="100%"/>
+                                    </div>
+                                    <div className="img">
+                                        <img src={logo} height="100%"/>
+                                    </div>
+                                </div>
+                        }
                     </div>
 
 

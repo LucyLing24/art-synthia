@@ -17,6 +17,7 @@ const Col = Grid.Col;
 function Home() {
     const [select,setSelect]=useState(false);
     const [share,setShare]=useState(false);
+
     const options = JSON.parse(localStorage.getItem("data"));
     const [item,setItem]=useState({})
 
@@ -25,11 +26,11 @@ function Home() {
 
     useEffect(()=>{
         if(id){
-            setItem(_.find(options,["id",id]) ?? _.find(options,["id","000"]));
+            setItem(_.find(options,["id",id]) ?? _.find(options,["id","0"]));
         }
         else {
-            setItem(_.find(options,["id","000"]));
-            navigate(`/artsynthia/home/000`)
+            setItem(_.find(options,["id","0"]));
+            navigate(`/artsynthia/home/0`)
         }
     },[id])
 
@@ -77,7 +78,7 @@ function Home() {
                     <Row >
                         <Col span={8}>
                             <div className="center">
-                                <img src={item?.picture ?? logo} width="100%" />
+                                <img src={item?.picture?.[2]?.url ?? logo} width="100%" />
                                 <div className="text-name" style={{marginTop:24}}>
                                     <span className="text-title">NAME: {item.name}</span>
                                 </div>
@@ -85,7 +86,7 @@ function Home() {
                         </Col>
                         <Col span={16} >
                             <div style={{marginTop: 64}}>
-                                <div style={{overflow: "scroll", maxHeight: "calc( 90vh - 360px)"}}>
+                                <div style={{overflow: "scroll", maxHeight: "calc( 90vh - 444px)"}}>
 
                                     {
                                         _.map(item?.details, (value, key) => {
@@ -107,7 +108,9 @@ function Home() {
                                         })
                                     }
                                 </div>
-                                <Button status="warning" shape="round" type="text"  onClick={()=>{navigate(`/artsynthia/profile/${id}`)}}><span className="text-title">view profile -> </span></Button>
+                                <Button style={{background:"rgba(255,255,255,0.5)",marginRight:12}} status="warning" shape="round" type="text"  onClick={()=>{navigate(`/artsynthia/profile/${id}`)}}><span className="text-title">view profile -> </span></Button>
+                                <Button style={{background:"rgba(255,255,255,0.5)",marginRight:12}} status="warning" shape="round" type="text"  onClick={()=>{navigate(`/artsynthia/chat/${id}`)}}><span className="text-title">chat with character -> </span></Button>
+                                <Button style={{background:"rgba(255,255,255,0.5)"}} status="warning" shape="round" type="text"  onClick={()=>{navigate(`/artsynthia/family/${id}`)}}><span className="text-title">family tree -> </span></Button>
                             </div>
                         </Col>
                     </Row>

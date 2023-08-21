@@ -1,7 +1,7 @@
 import mango from "../Assets/mango.png"
 const items = [
     {
-        id: "000",
+        id: "0",
         name: "Default",
         settings: {
             "character_details": "default",
@@ -20,9 +20,9 @@ const items = [
         keywords: ["keyword 1","keyword 2"],
     },
     {
-        id: "001",
+        id: "1",
         name: "Mango",
-        picture: mango,
+        picture: [mango,mango,mango,mango,mango],
         settings: {
             "name": "Mango",
             "character_details": "Mango is a dog",

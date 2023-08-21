@@ -117,6 +117,10 @@ code {
   font-size: 14px;
   font-family: 'Press Start 2P', cursive;
 }
+.text-title-small{
+  font-size: 4px;
+  font-family: 'Press Start 2P', cursive;
+}
 .text-name{
   margin: 10px;
   align-items: flex-start;
@@ -230,4 +234,65 @@ code {
 
 .arco-select-view {
   border-radius: 512px !important;
+}
+
+.arco-card-size-default .arco-card-body {
+  padding: 16px 16px 16px !important;
+}
+
+.arco-card-meta-footer:last-child {
+  margin-top: 0px !important;
+}
+
+
+
+
+.chat-dialogue {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.left-dialogue {
+  justify-content: flex-start;
+
+}
+
+.right-dialogue {
+  justify-content: flex-end;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.message {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 8px;
+  color: #232323;
+  max-width: 70%;
+}
+.content-card{
+  margin: 24px;
+  border-radius:24px !important;
+  overflow-y: scroll !important;
+  width: auto;
+}
+
+.chat-input{
+  border-radius:16px!important;
+  position: fixed;
+  margin-right: 20px;
+  margin-left: 20px;
+  max-width: calc(100vw - 380px) !important;
+}
+.chat-card{
+  position: relative;
+  width: auto;
 }
