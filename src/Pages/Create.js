@@ -31,17 +31,17 @@ function Create() {
     const handleGenerate = async (userInput) => {
         setGenerated(true);
         try {
-            const raw_summary = await handleChatGPT("Please analyze the following character information for a game, the information only includs rich and imaginative details about character's 'name, age, dressing style, weapoon, background stroy, separated by commas. return a very brief paragraph of plain text content,"+JSON.stringify(userInput),1);
+            const raw_summary = await handleChatGPT("Please analyze the following character information for a painting of the game character, the information only includes the character's ' detailed description,background of the painting, emotion of the painting, and the art style of it, separated by commas. return a very brief paragraph no more than 150 words,"+JSON.stringify(userInput),1);
             setSummary(raw_summary);
 
             const raw_details = await handleChatGPT("Please extract character's 'name, age, dressing style, weapoon, background stroy from the following text, please help me to give more rich details about each of them and return it in JSON format"+raw_summary,0);
             setDetails(JSON.parse(raw_details?.split(",")));
 
-            const raw_keyword = await handleChatGPT("Please identify 10 critical keywords about the character in these content, including the gender of the character, the artstyle, the dressing style and the main characteristic of the character， especially noun and adj, I want to search for reference images based on the keywords, you only need to answer 10 keywords, separated by commas:"+raw_summary,0);
+            const raw_keyword = await handleChatGPT("Please identify 5 critical keywords about the character in these content, including the gender of the character, the artstyle, the dressing style and the main characteristic of the character， especially noun and adj, I want to search for reference images based on the keywords, you only need to answer 5 keywords, separated by commas:"+raw_summary,0);
             setKeyword(raw_keyword?.split(","));
 
 
-            const raw_picture = await handleDALLE2("a single person portrait and bust of game character in style"+form.getFieldsValue("render_style")?.render_style+raw_keyword)
+            const raw_picture = await handleDALLE2("a single person portrait and bust of game character in style"+form.getFieldsValue("render_style")?.render_style+raw_summary)
             setPicture(raw_picture.data.data);
 
         } catch (error) {
