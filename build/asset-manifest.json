@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/sketchar/static/css/main.744e5527.css",
+    "main.js": "/sketchar/static/js/main.bd7bf4ba.js",
+    "static/js/787.0b0dcc32.chunk.js": "/sketchar/static/js/787.0b0dcc32.chunk.js",
+    "static/media/b1.jpg": "/sketchar/static/media/b1.06d47156623a66f337a4.jpg",
+    "static/media/1.jpg": "/sketchar/static/media/1.0f5ed568829375cc0480.jpg",
+    "static/media/pngwing.com (2).png": "/sketchar/static/media/pngwing.com (2).ac3d11eb152f214bd565.png",
+    "static/media/pngwing.com (1).png": "/sketchar/static/media/pngwing.com (1).e0b3ba2e3485a4e3502d.png",
+    "static/media/pngwing.com.png": "/sketchar/static/media/pngwing.com.c0ee698ae892e9d358ba.png",
+    "static/media/logo.png": "/sketchar/static/media/logo.a4cbe3f65908a60db0cd.png",
+    "index.html": "/sketchar/index.html",
+    "main.744e5527.css.map": "/sketchar/static/css/main.744e5527.css.map",
+    "main.bd7bf4ba.js.map": "/sketchar/static/js/main.bd7bf4ba.js.map",
+    "787.0b0dcc32.chunk.js.map": "/sketchar/static/js/787.0b0dcc32.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.744e5527.css",
+    "static/js/main.bd7bf4ba.js"
+  ]
+}

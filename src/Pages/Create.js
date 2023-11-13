@@ -40,13 +40,17 @@ function Create() {
             const raw_keyword = await handleChatGPT("Please identify 5 critical keywords about the character in these content, including the gender of the character, the artstyle, the dressing style and the main characteristic of the character， especially noun and adj, I want to search for reference images based on the keywords, you only need to answer 5 keywords, separated by commas:"+raw_summary,0);
             setKeyword(raw_keyword?.split(","));
 
-            const raw_picture = await handleDALLE2(`Character portrait, style ${userInput?.render_style}, keywords ${keyword}, character information:${summary.slice(0, 500)}`)
-            setPicture(raw_picture.data.data);
+            const raw_picture = await handleDALLE2(`Character portrait, style ${userInput?.render_style}, keywords ${keyword}, character information:${summary?.slice(0, 500)}`)
+            setPicture(raw_picture);
+
+            console.log(raw_picture)
+
 
         } catch (error) {
             console.error('Error fetching response from the server:', error);
         }
     };
+
 
     const swapPicItems = (index1, index2) => {
         const updatedList = [...picture];
@@ -143,7 +147,7 @@ return (
 
                     <div className="center" style={{gap: 48, margin: 108}}>
                         {
-                            picture.length > 0 ? (
+                            picture?.length > 0 ? (
                                     <div className="img-stack">
                                         <div className="img" onClick={()=>swapPicItems(0,2)}>
                                             <img src={picture[0]?.url} height="100%"/>

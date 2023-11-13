@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import OpenAI, {Configuration, OpenAIApi} from "openai";
+import OpenAI  from "openai";
 
 const handleDALLE2 = async (prompt) => {
 
@@ -15,7 +15,7 @@ const handleDALLE2 = async (prompt) => {
         size: "512x512",
     });
 
-    return res;
+    return res?.data;
 };
 
 export default handleDALLE2;
