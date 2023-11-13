@@ -11,9 +11,8 @@ function Family(){
         <div className="card-container" style={{overflowX: "hidden"}}>
             <div className="center">
                 <div className="text-name-big" >
-                    <span className="text-title">All Characters' Family</span>
+                    <span className="text-title">Ragnar' Family</span>
                 </div>
-
             </div>
 
             <div style={{display: 'flex', flexWrap: 'wrap'}}>

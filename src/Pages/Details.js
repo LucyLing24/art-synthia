@@ -48,7 +48,7 @@ return (
                     {/*header*/}
                     <div className="card-header">
                         <div className="card-title">
-                            Art Synthia
+                            Sketchar
                             Character Generator
                         </div>
                         <div className="card-ID">
@@ -181,7 +181,7 @@ return (
 
             <div className="center" style={{flexDirection: "row", gap: "5vw", height: "calc(10vh + 32px)", margin: 0}}>
                 <Button status='warning' shape="round" style={{fontWeight: 800, width: "20vw"}}
-                        onClick={() => {navigate(`/artsynthia/home/${id}`)}}>
+                        onClick={() => {navigate(`/sketchar/home/${id}`)}}>
                     Back
                 </Button>
                 {/*<Button shape="round" type="primary" style={{width: "20vw"}} onClick={()=>{navigate(`/edit/${id}`)}}>Edit</Button>*/}

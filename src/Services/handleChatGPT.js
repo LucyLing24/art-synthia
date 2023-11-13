@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import {Configuration, OpenAIApi} from "openai";
+import OpenAI  from "openai";
 const handleChatGPT = async (prompt,temperature) => {
 
-    const apiKey = localStorage.getItem("api_key");
-    const configuration = new Configuration({
-        apiKey: apiKey,
-    });
-    const openai = new OpenAIApi(configuration);
 
-    const response = await openai.createChatCompletion(
+    const apiKey = localStorage.getItem("api_key");
+    const openai = new OpenAI({
+        apiKey: apiKey,
+        dangerouslyAllowBrowser:true,
+    });
+
+    const response = await openai.chat.completions.create(
         {
             messages: [{role: 'system', content: 'You are a game character design assistant.'}, {
                 role: 'user',
@@ -19,7 +20,7 @@ const handleChatGPT = async (prompt,temperature) => {
         }
     );
 
-    return response.data.choices[0].message.content;
+    return response?.choices?.[0]?.message?.content
 
 };
 

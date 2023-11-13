@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import {Configuration, OpenAIApi} from "openai";
+import OpenAI, {Configuration, OpenAIApi} from "openai";
 
 const handleDALLE2 = async (prompt) => {
 
-    const configuration = new Configuration({
-        apiKey: localStorage.getItem("api_key"),
+    const apiKey = localStorage.getItem("api_key");
+    const openai = new OpenAI({
+        apiKey: apiKey,
+        dangerouslyAllowBrowser:true,
     });
-    const openai = new OpenAIApi(configuration)
 
-    const res = await openai.createImage({
+    const res = await openai.images.generate({
         prompt: prompt,
         n: 5,
         size: "512x512",

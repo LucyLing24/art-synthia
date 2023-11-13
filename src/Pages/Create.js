@@ -40,8 +40,7 @@ function Create() {
             const raw_keyword = await handleChatGPT("Please identify 5 critical keywords about the character in these content, including the gender of the character, the artstyle, the dressing style and the main characteristic of the character， especially noun and adj, I want to search for reference images based on the keywords, you only need to answer 5 keywords, separated by commas:"+raw_summary,0);
             setKeyword(raw_keyword?.split(","));
 
-
-            const raw_picture = await handleDALLE2("a single person portrait and bust of game character in style"+form.getFieldsValue("render_style")?.render_style+raw_summary)
+            const raw_picture = await handleDALLE2(`Character portrait, style ${userInput?.render_style}, keywords ${keyword}, character information:${summary.slice(0, 500)}`)
             setPicture(raw_picture.data.data);
 
         } catch (error) {
@@ -65,7 +64,7 @@ return (
                     {/*header*/}
                     <div className="card-header">
                         <div className="card-title">
-                            Art Synthia
+                            Sketchar
                             Character Generator
                         </div>
                         <div className="card-ID">
@@ -202,7 +201,7 @@ return (
                             }
                             {edit ?
                             <Tag icon={<IconPlus/>}
-                                 style={{margin: '0 16px 16px 0 ', fontWeight: 800, cursor: 'pointer',}}
+                                 style={{margin: '0 16px 16px 0 ', fontWeight: 800, cursor: 'pointer'}}
                                  onClick={()=> Modal.success({
                                      title: 'Add Tag',
                                      content:<Form form={add_tag}
@@ -307,7 +306,7 @@ return (
                                     }
                                 ]
                                 localStorage.setItem('data',JSON.stringify(new_data))
-                                navigate(`/artsynthia/home/${id ?? "0"}`)
+                                navigate(`/sketchar/home/${id ?? "0"}`)
                             }}
                     >Save & Back</Button>
                 </div> : null

@@ -44,7 +44,7 @@ function Login() {
                         style={{zIndex: 0,position: "absolute",width:"60%",opacity: 0.5,filter:"contrast(30%)"}}/>
                     <div className="card-header">
                         <div className="card-title">
-                            Art Synthia
+                            Sketchar
                             Character Generator
                         </div>
                         <div className="card-ID">
@@ -53,7 +53,7 @@ function Login() {
                     </div>
 
                     <div className="center">
-                        <span className="text-title">WELCOME TO ART SYNTHIA! </span>
+                        <span className="text-title">WELCOME TO Sketchar! </span>
                     </div>
                     <pre style={{whiteSpace: 'pre-line'}}>
                     <Form form={form} labelCol={{span: 8}} wrapperCol={{span: 12}} style={{width: "100%"}}
@@ -63,7 +63,7 @@ function Login() {
                               localStorage.setItem('id', "1");
                               try{
                                   if(await handleChatGPT("hi,test connect!", 1)){
-                                      navigate(`/artsynthia/home/0`)
+                                      navigate(`/sketchar/home/0`)
                                   }
                               }
                               catch (e){

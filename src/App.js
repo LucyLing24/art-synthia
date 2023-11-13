@@ -11,12 +11,12 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/artsynthia/home/:id" element={<Home />}/>
-                <Route path="/artsynthia/profile/:id" element={<Details />}/>
-                <Route path="/artsynthia/chat/:id" element={<Chat />}/>
-                <Route path="/artsynthia/family/:id" element={<Family />}/>
-                <Route path="/artsynthia/create" element={<Create />}/>
-                <Route exact path="/artsynthia" element={<Login />}/>
+                <Route path="/sketchar/home/:id" element={<Home />}/>
+                <Route path="/sketchar/profile/:id" element={<Details />}/>
+                <Route path="/sketchar/chat/:id" element={<Chat />}/>
+                <Route path="/sketchar/family/:id" element={<Family />}/>
+                <Route path="/sketchar/create" element={<Create />}/>
+                <Route exact path="/sketchar" element={<Login />}/>
                 <Route path="*" element={<Login />}/>
             </Routes>
         </Router>

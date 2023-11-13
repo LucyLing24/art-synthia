@@ -30,7 +30,7 @@ function Home() {
         }
         else {
             setItem(_.find(options,["id","0"]));
-            navigate(`/artsynthia/home/0`)
+            navigate(`/sketchar/home/0`)
         }
     },[id])
 
@@ -108,9 +108,9 @@ function Home() {
                                         })
                                     }
                                 </div>
-                                <Button style={{background:"rgba(255,255,255,0.5)",marginRight:12}} status="warning" shape="round" type="text"  onClick={()=>{navigate(`/artsynthia/profile/${id}`)}}><span className="text-title">view profile -> </span></Button>
-                                <Button style={{background:"rgba(255,255,255,0.5)",marginRight:12}} status="warning" shape="round" type="text"  onClick={()=>{navigate(`/artsynthia/chat/${id}`)}}><span className="text-title">chat with character -> </span></Button>
-                                <Button style={{background:"rgba(255,255,255,0.5)"}} status="warning" shape="round" type="text"  onClick={()=>{navigate(`/artsynthia/family/${id}`)}}><span className="text-title">family tree -> </span></Button>
+                                <Button style={{background:"rgba(255,255,255,0.5)",marginRight:12}} status="warning" shape="round" type="text"  onClick={()=>{navigate(`/sketchar/profile/${id}`)}}><span className="text-title">view profile -> </span></Button>
+                                <Button style={{background:"rgba(255,255,255,0.5)",marginRight:12}} status="warning" shape="round" type="text"  onClick={()=>{navigate(`/sketchar/chat/${id}`)}}><span className="text-title">chat with character -> </span></Button>
+                                <Button style={{background:"rgba(255,255,255,0.5)"}} status="warning" shape="round" type="text"  onClick={()=>{navigate(`/sketchar/family/${id}`)}}><span className="text-title">family tree -> </span></Button>
                             </div>
                         </Col>
                     </Row>
@@ -119,7 +119,7 @@ function Home() {
             </div>
             <div className="center" style={{flexDirection:"row",gap:"5vw",height:"calc(10vh + 32px)",margin:0}}>
                 <Button status='warning' shape="round"  style={{fontWeight:800}} onClick={()=>{setSelect(true)}}>Select Another Character</Button>
-                <Button shape="round" type="primary" style={{width:"30vw"}} onClick={()=>{navigate(`/artsynthia/create`)}}>Create A New Character</Button>
+                <Button shape="round" type="primary" style={{width:"30vw"}} onClick={()=>{navigate(`/sketchar/create`)}}>Create A New Character</Button>
                 <Button color="lime" shape="round" type="default" style={{fontWeight:800}} onClick={()=>{setShare(true)}}>Share</Button>
                 <Modal
                     simple
@@ -141,7 +141,7 @@ function Home() {
                         options={_.map(options,(option)=>{
                             return {value:option?.id,label:option?.name+" ("+option?.id+")",item:option}
                         })}
-                        onChange={(item)=>{setItem(_.find(options,["id",item?.value]));navigate(`/artsynthia/home/${item?.value}`)}}
+                        onChange={(item)=>{setItem(_.find(options,["id",item?.value]));navigate(`/sketchar/home/${item?.value}`)}}
                     >
                     </Select>
                 </Modal>

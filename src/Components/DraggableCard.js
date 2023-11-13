@@ -26,7 +26,7 @@ const DraggableCard = (data) => {
                     bordered={false}
                     style={{width: 240,borderRadius:36}}
                     cover={
-                            <img src={item?.picture?.[2]?.url ?? logo} style={{width: 240,borderRadius:"36px 36px 0px 0px"}}/>
+                            <img src={item?.picture?.[2] ?? logo} style={{width: 240,borderRadius:"36px 36px 0px 0px"}}/>
                     }
                     actions={[
                         <span className='icon-hover'>
@@ -40,7 +40,7 @@ const DraggableCard = (data) => {
                     <Meta
                         avatar={
                             <Space>
-                                <Avatar size={24}><img src={item?.picture?.[2]?.url ?? logo} width="100%"/></Avatar>
+                                <Avatar size={24}><img src={item?.picture?.[2] ?? logo} width="100%"/></Avatar>
                                 <span className="text-title-small">{item?.name}</span>
                             </Space>
                         }
